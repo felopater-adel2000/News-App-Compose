@@ -30,9 +30,10 @@ import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showSystemUi = true)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    event: (OnBoardingEvent) -> Unit
+) {
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -53,6 +54,7 @@ fun OnBoardingScreen() {
         
         HorizontalPager(state = pagerState) {index ->
             OnBoardingPage(
+                modifier = Modifier.fillMaxWidth().weight(1f),
                 page = pages[index])
         }
 
@@ -97,7 +99,7 @@ fun OnBoardingScreen() {
                     onClick = {
                         scope.launch {
                             if (pagerState.currentPage == 2) {
-                                //onEvent(OnBoardingEvent.SaveAppEntry)
+                                event(OnBoardingEvent.SaveAppEntry)
                             } else {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1
