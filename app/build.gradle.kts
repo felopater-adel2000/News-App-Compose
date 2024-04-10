@@ -103,4 +103,6 @@ dependencies {
     implementation("androidx.paging:paging-compose:3.2.0-rc01")
 
     implementation("com.android.support:multidex:2.0.1")
+
+    implementation(libs.okhttpLoggingInterceptorDependency)
 }
